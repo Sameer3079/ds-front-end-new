@@ -41,7 +41,7 @@ const styles = theme => ({
     },
 });
 
-class FoodItem extends React.Component {
+class DrugItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = { quantity: 0, count: 0 };
@@ -119,15 +119,15 @@ class FoodItem extends React.Component {
                     </CardContent>
                     <CardActions className={classes.actions} disableActionSpacing>
                     </CardActions>
-                    
+
                 </Card>
             </div>
         );
     }
 }
 
-FoodItem.propTypes = {
+DrugItem.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FoodItem);
+export default withStyles(styles)(DrugItem);

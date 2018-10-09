@@ -39,12 +39,12 @@ class AllDrugs extends Component {
         }
 
         // Outputs : [ [1,2,3] , [4,5,6] ,[7,8] ]
-        var foodItemsInRows = chunkArray(this.state.data, 4);
+        var drugItemsInRows = chunkArray(this.state.data, 4);
         var that = this; // this is taken into a variable because for some reason this is not accessible inside functions which are in the render method
-        function displayFood() {
+        function displayDrug() {
             let x, rows = [];
-            for (x = 0; x < foodItemsInRows.length; x++) {
-                rows[x] = <Row key={x} data={foodItemsInRows[x]}
+            for (x = 0; x < drugItemsInRows.length; x++) {
+                rows[x] = <Row key={x} data={drugItemsInRows[x]}
                     spacing={0} addItem={that.props.addItem}
                     removeItem={that.props.removeItem} />;
             }
@@ -53,7 +53,7 @@ class AllDrugs extends Component {
 
         return (
             <div>
-                {displayFood()}
+                {displayDrug()}
             </div >
         )
     }

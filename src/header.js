@@ -69,7 +69,7 @@ class ButtonAppBar extends Component {
                     <Toolbar>
                         {displayLoyaltyPoints()}
                         <Typography variant="title" color="inherit" className={classes.flex}>
-                            Fast Food Restaurant
+                            Online Drugs Store
                         </Typography>
                         {displayLoginButton()}
                     </Toolbar>

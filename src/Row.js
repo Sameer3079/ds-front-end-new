@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FoodItem from './FoodItem';
+import DrugItem from './DrugItem';
 import Grid from '@material-ui/core/Grid';
 
 class Row extends Component {
@@ -15,9 +15,9 @@ class Row extends Component {
             for (x = 0; x < that.props.data.length; x++) {
                 items[x] = (
                     <Grid key={x} item xs={3}>
-                        <FoodItem key={x*100} addItem={that.props.addItem} removeItem={that.props.removeItem} 
-                        name={that.props.data[x].name} quantity={that.props.data[x].quantity} 
-                        price={that.props.data[x].price}/>
+                        <DrugItem key={x * 100} addItem={that.props.addItem} removeItem={that.props.removeItem}
+                            name={that.props.data[x].name} quantity={that.props.data[x].quantity}
+                            price={that.props.data[x].price} />
                     </Grid>)
             }
             return items;
