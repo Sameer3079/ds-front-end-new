@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -22,6 +22,12 @@ import { FormGroup } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: green,
+    },
+});
 
 const styles = {
     card: {
@@ -82,13 +88,13 @@ class ShoppingCart extends Component {
     handleMobileNumber = event => {
         let mobileDetails = this.state.mobileDetails;
         mobileDetails.mobileNumber = event.target.value;
-        this.setState({mobileDetails: mobileDetails});
+        this.setState({ mobileDetails: mobileDetails });
     }
 
     handlePIN = event => {
         let mobileDetails = this.state.mobileDetails;
         mobileDetails.PIN = event.target.value;
-        this.setState({mobileDetails: mobileDetails});
+        this.setState({ mobileDetails: mobileDetails });
     }
 
     handleCardClickOpen = () => {
@@ -148,15 +154,13 @@ class ShoppingCart extends Component {
     };
 
     handleCheckboxChange = event => {
-        this.setState({ useLP: event.target.checked });
-        // console.log(e)
+        this.setState({ useLP: event.target.checked })
     };
 
     handleMobileClose = () => {
         this.setState({ mobile: false });
     };
 
-    // 
     handleMobilePayClose = () => {
         this.setState({ mobile: false });
         axios({
@@ -196,7 +200,7 @@ class ShoppingCart extends Component {
                 }
                 else {
                     tempListItems[x] = (
-                        <OrderItem key={x} item={that.props.orderItems[x]}/>
+                        <OrderItem key={x} item={that.props.orderItems[x]} />
                     );
                 }
             }
@@ -224,10 +228,11 @@ class ShoppingCart extends Component {
                     <List>
                         {ListItems()}
                     </List>
-
-                    <CardActions>
-                        <Button size="small" onClick={this.handleClickOpen}>Proceed</Button>
-                    </CardActions>
+                    <MuiThemeProvider theme={theme}>
+                        <CardActions>
+                            <Button variant="raised" color="primary" size="small" onClick={this.handleClickOpen}>Proceed</Button>
+                        </CardActions>
+                    </MuiThemeProvider>
                 </Card>
                 <Dialog
                     open={this.state.paymentMethodSelection}

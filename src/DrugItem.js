@@ -76,7 +76,6 @@ class DrugItem extends React.Component {
         } else if (this.state.quantity === 0) {
             this.setState({ count: 0 });
             this.props.removeItem({ name: this.props.name });
-            //this.props.addUser({ name: this.props.name, price: this.props.price, quantity: this.state.quantity });
         }
     }
 
@@ -87,7 +86,7 @@ class DrugItem extends React.Component {
             buttonColor = "primary";
             button = "Add to Order";
         } else {
-            buttonColor = "default";
+            buttonColor = "secondary";
             button = "Change Quantity";
         }
 
