@@ -49,7 +49,7 @@ class ButtonAppBar extends Component {
         const { classes } = this.props;
         var that = this;
         function displayLoginButton() {
-            if (that.props.loggedIn == false) {
+            if (that.props.loggedIn === false) {
                 return (<Button color="inherit" onClick={that.handleClickOpen}>Login</Button>);
             }
             else {
@@ -58,7 +58,7 @@ class ButtonAppBar extends Component {
         }
 
         function displayLoyaltyPoints() {
-            if (that.props.loggedIn == true) {
+            if (that.props.loggedIn === true) {
                 return (<Typography variant="textsecondary" color="inherit">Loyalty Points: {that.props.points}</Typography>);
             }
         }

@@ -71,9 +71,9 @@ class DrugItem extends React.Component {
     AddToOrder() {
         let tempCount = this.state.count;
         this.setState({ count: ++tempCount });
-        if (this.state.quantity != 0) {
+        if (this.state.quantity !== 0) {
             this.props.addItem({ name: this.props.name, price: this.props.price, quantity: this.state.quantity });
-        } else if (this.state.quantity == 0) {
+        } else if (this.state.quantity === 0) {
             this.setState({ count: 0 });
             this.props.removeItem({ name: this.props.name });
             //this.props.addUser({ name: this.props.name, price: this.props.price, quantity: this.state.quantity });

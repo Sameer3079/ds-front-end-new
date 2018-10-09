@@ -126,7 +126,7 @@ class ShoppingCart extends Component {
     };
 
     handleClickOpen = () => {
-        if (this.props.netPrice != 0 && this.props.loggedIn === true)
+        if (this.props.netPrice !== 0 && this.props.loggedIn === true)
             this.setState({ paymentMethodSelection: true });
     };
 
@@ -204,7 +204,7 @@ class ShoppingCart extends Component {
         }
 
         function checkboxStatus() {
-            if (that.props.LP == 0)
+            if (that.props.LP === 0)
                 return true;
             else
                 return false;

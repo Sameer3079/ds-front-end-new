@@ -40,9 +40,10 @@ class App extends Component {
   // Called: it is called when either an item is added or removed from the orderItems array
   RecalculateNetPrice() {
     let tempNetPrice = 0;
-    let tempOrderItems = this.state.orderItems;
-    tempOrderItems.map(foodItem => {
-      tempNetPrice = tempNetPrice + (foodItem.price * foodItem.quantity);
+    let temp = this.state.orderItems;
+    temp.map(drugItem => {
+      tempNetPrice = tempNetPrice + (drugItem.price * drugItem.quantity);
+      return undefined
     });
     this.setState({ netPrice: tempNetPrice });
   }
@@ -67,7 +68,7 @@ class App extends Component {
       data: { username: this.state.username, password: this.state.password },
       config: { headers: { 'Content-Type': 'application/json' } }
     }).then(res => {
-      if (res.data.status == true) {
+      if (res.data.status === true) {
         this.setState({ loggedIn: true });
         this.setState({ name: res.data.user.name }); // storing the name in the state
         this.setState({ points: res.data.user.points }); // storing the loyalty points in the state
@@ -88,40 +89,40 @@ class App extends Component {
     this.setState({ invalidCredentials: false });
   };
 
-  // Purpose: to delete a food Item from the orderItems array
+  // Purpose: to delete a drug Item from the orderItems array
   // Called: in deleteOrderItem() line:124
-  deleteItem(foodItem) {
+  deleteItem(drugItem) {
     let x;
-    let tempOrderItems = this.state.orderItems;
-    for (x = 0; x < tempOrderItems.length; x++) {
-      if (foodItem.name == tempOrderItems[x].name) {
-        tempOrderItems.splice(x, 1);
-        this.setState({ orderItems: tempOrderItems });
+    let temp = this.state.orderItems;
+    for (x = 0; x < temp.length; x++) {
+      if (drugItem.name === temp[x].name) {
+        temp.splice(x, 1);
+        this.setState({ orderItems: temp });
         return true;
       }
     }
   }
 
-  // Purpose: to add a food Item to the order Items array
-  // Called: in "Add to Order"/"Change Quantity" button in foodItem.js
-  addOrderItem(foodItem) {
-    this.deleteItem(foodItem); // If the food Item already exists, delete it
-    if (foodItem.quantity === 0) { // If the QTY = 0 then it does not need to be added
+  // Purpose: to add a drug Item to the order Items array
+  // Called: in "Add to Order"/"Change Quantity" button in drugItem.js
+  addOrderItem(drugItem) {
+    this.deleteItem(drugItem); // If the drug Item already exists, delete it
+    if (drugItem.quantity === 0) { // If the QTY = 0 then it does not need to be added
       return -1;
     } else { // Adding the item to the orderItems array
-      // tempOrderItems is used because the state cannot be directly modified in ReactJS
-      let tempOrderItems = this.state.orderItems;
-      tempOrderItems.push({ name: foodItem.name, price: foodItem.price, quantity: foodItem.quantity });
+      // temp is used because the state cannot be directly modified in ReactJS
+      let temp = this.state.orderItems;
+      temp.push({ name: drugItem.name, price: drugItem.price, quantity: drugItem.quantity });
       this.setState({
-        orderItems: tempOrderItems
+        orderItems: temp
       });
     }
     this.RecalculateNetPrice();
   }
 
-  // Called: in "Add to Order"/"Change Quantity" button in foodItem.js AND in addOrderItem (in case the quantity of an added Item is being changed)
-  deleteOrderItem(foodItem) {
-    this.deleteItem(foodItem);
+  // Called: in "Add to Order"/"Change Quantity" button in drugItem.js AND in addOrderItem (in case the quantity of an added Item is being changed)
+  deleteOrderItem(drugItem) {
+    this.deleteItem(drugItem);
     this.RecalculateNetPrice();
   }
 
@@ -140,7 +141,7 @@ class App extends Component {
           <Grid item xs={2}>
             <ShoppingCart netPrice={this.state.netPrice} LP={this.state.points} loggedIn={this.state.loggedIn}
               orderItems={this.state.orderItems}
-              username={this.state.username} Login={this.Login.bind(this)}/>
+              username={this.state.username} Login={this.Login.bind(this)} />
           </Grid>
         </Grid>
         <Dialog
